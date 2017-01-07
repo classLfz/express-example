@@ -2,7 +2,7 @@
 
 一个简单的express服务，使用mongodb作为数据库。使用原生js编写。
 
-修改配置文件`src/server.json`进行对数据地址、端口、数据库名称的修改。默认为：
+修改配置文件`src/server.json`进行对数据库地址、端口、数据库名称的修改。默认为：
 ```json
 {
   "dbHost": "127.0.0.1",
@@ -15,7 +15,7 @@
 
 ## 需要用到的框架或库
 
-- [express](https://http://www.expressjs.com.cn/): 基于 Node.js 平台，快速、开放、极简的 web 开发框架;
+- [express](https://www.expressjs.com.cn/): 基于 Node.js 平台，快速、开放、极简的 web 开发框架;
 
 - [mongoose](http://mongoosejs.com/): elegant mongodb object modeling for node.js;
 

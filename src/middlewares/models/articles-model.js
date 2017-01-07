@@ -10,6 +10,6 @@ let articleSchema = new mongoose.Schema({
   content: {type: String, require: true}
 });
 
-let Articles = mongoose.model('List', articleSchema);
+let Articles = mongoose.model('Articles', articleSchema);
 
 module.exports = Articles;

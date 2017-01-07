@@ -4,7 +4,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const Articles = require('./models/articles-model');
-const helper = require('./helper');
+const helper = require('../helper');
 const articleRouter = express.Router();
 
 articleRouter.use(bodyParser.json());

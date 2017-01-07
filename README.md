@@ -15,7 +15,7 @@
 
 ## 需要用到的框架或库
 
-- [express](https://www.expressjs.com.cn/): 基于 Node.js 平台，快速、开放、极简的 web 开发框架;
+- [express](http://www.expressjs.com.cn/): 基于 Node.js 平台，快速、开放、极简的 web 开发框架;
 
 - [mongoose](http://mongoosejs.com/): elegant mongodb object modeling for node.js;
 

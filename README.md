@@ -34,3 +34,15 @@
 ### 安装依赖
 
 `npm install`
+
+### 语法检查
+
+`gulp lint`或者`npm run lint`
+
+### 生成文档
+
+`gulp apidoc`或者`npm run apidoc`
+
+### 开启服务
+
+`npm run serve`或者`node src/app.js`

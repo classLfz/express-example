@@ -4,7 +4,10 @@
   "description": "A express example server with mongodb.",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "gulp test",
+    "lint": "gulp lint",
+    "apidoc": "gulp apidoc",
+    "serve": "node src/app.js"
   },
   "repository": {
     "type": "git",
@@ -27,5 +30,11 @@
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
     "mongoose": "^4.7.6"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-apidoc": "^0.2.4",
+    "gulp-eslint": "^3.0.1",
+    "gulp-mocha": "^3.0.1"
   }
 }

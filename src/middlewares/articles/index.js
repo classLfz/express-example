@@ -3,8 +3,8 @@
  */
 const express = require('express');
 const bodyParser = require('body-parser');
-const Articles = require('./models/articles-model');
-const helper = require('../helper');
+const Articles = require('./model');
+const helper = require('../../helper');
 const articleRouter = express.Router();
 
 articleRouter.use(bodyParser.json());
@@ -21,7 +21,7 @@ articleRouter.get('/articles', (req, res) => {
       res.json(articleList);
     }, err => {
       res.status(500).json(err);
-    })
+    });
 });
 
 /**
@@ -38,6 +38,7 @@ articleRouter.get('/articles/:id', (req, res) => {
     .then(article => {
       res.json(article);
     }, err => {
+      console.error(err);
       res.sendStatus(404);
     });
 });

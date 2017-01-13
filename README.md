@@ -41,6 +41,8 @@
 
 ### 生成文档
 
+文档的编写使用[apidoc](http://apidocjs.com/)
+
 `gulp apidoc`或者`npm run apidoc`
 
 ### 开启服务

@@ -8,7 +8,7 @@ const mocha = require('gulp-mocha');
 gulp.task('apidoc', (done) => {
   apidoc({
     src: 'src/',
-    dest: 'docs',
+    dest: 'apidoc',
     debug: true,
     includeFilters: ['.*\\.js$']
   }, done);

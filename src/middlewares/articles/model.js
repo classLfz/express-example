@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 
 let articleSchema = new mongoose.Schema({
   title: {type: String, require: true},
-  data: {type: Number, require: true},
+  date: {type: Number, require: true},
   author: {type: String, require: true},
   content: {type: String, require: true}
 });

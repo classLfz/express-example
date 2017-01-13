@@ -10,10 +10,36 @@ const articleRouter = express.Router();
 articleRouter.use(bodyParser.json());
 
 /**
- * 获取文章列表
+ * @api {get} /articles 获取文章列表信息
+ * @apiName 获取文章列表
+ * @apiGroup Articles
  *
- * 查询成功，返回状态码200（默认）以及列表数组;
- * 查询出错，返回状态码500以及报错
+ * @apiSuccess {Array} articleList 返回试卷信息数组
+ *
+ * @apiSuccessExample Success-Response:
+ *     HTTP/1.1 200 OK
+ *     [
+ *       {
+ *        "tile": "文章标题1",
+ *        "date": 1483941498230,
+ *        "author": "classlfz",
+ *        "content": "文章的详细内容"
+ *       },
+ *       {
+ *        "tile": "文章标题2",
+ *        "date": 1483941498230,
+ *        "author": "classlfz",
+ *        "content": "文章的详细内容"
+ *       }
+ *     ]
+ *
+ * @apiError (Error 5xx) 500 查询列表出错
+ *
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 500 服务器内部错误
+ *     {
+ *       "error": err
+ *     }
  */
 articleRouter.get('/articles', (req, res) => {
   Articles.find({}).sort({name: 'asc'}).exec()
@@ -25,10 +51,30 @@ articleRouter.get('/articles', (req, res) => {
 });
 
 /**
- * 根据ID来查询单篇文章
+ * @api {get} /articles/:id 根据单个id获取文章信息
+ * @apiName 根据id获取文章信息
+ * @apiGroup Articles
  *
- * 查询成功，返回文章内容;
- * 查询失败，返回状态码404;
+ * @apiParam (params) {String} id       试卷id
+ *
+ * @apiSuccess {Array} article 返回相应id的文章信息
+ *
+ * @apiSuccessExample Success-Response:
+ *    HTTP/1.1 200 OK
+ *      {
+ *        "tile": "文章标题2",
+ *        "date": 1483941498230,
+ *        "author": "classlfz",
+ *        "content": "文章的详细内容"
+ *       }
+ *
+ * @apiError (Error 4xx) 404 对应id的文章信息不存在
+ *
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 404 对应id的文章信息不存在
+ *     {
+ *       "error": err
+ *     }
  */
 articleRouter.get('/articles/:id', (req, res) => {
   // 获取id
@@ -44,10 +90,34 @@ articleRouter.get('/articles/:id', (req, res) => {
 });
 
 /**
- * 创建单篇文章
+ * @api {post} /articles 创建新的单个文章信息
+ * @apiName 创建新的单个文章信息
+ * @apiGroup ExaminationPaper
  *
- * 创建成功，返回状态码201;
- * 创建失败，返回状态码500以及相应的报错;
+ * @apiParam (body) {String} title       试卷标题（如：2017年国家教师资格证考试）
+ * @apiParam (body) {Number} duration    考试时长，单位为分钟
+ * @apiParam (body) {Number} start_time  考试开始时间（距1970 年 1 月 1 日的毫秒数）
+ * @apiParam (body) {Number} end_time    考试结束时间（距1970 年 1 月 1 日的毫秒数）
+ * @apiParam (body) {String} type        试卷类型（固定试卷/随机试卷）
+ * @apiParam (body) {Number} last_modified_time       最后一次修改时间（距1970 年 1 月 1 日的毫秒数）
+ *
+ * @apiSuccess (Success 2xx) 201 创建成功
+ *
+ * @apiError (Error 4xx) 400 请求上传格式不符合要求
+ *
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 400 请求上传格式不符合要求
+ *     {
+ *       "error": err
+ *     }
+ *
+ * @apiError (Error 5xx) 500 服务器创建过程出错
+ *
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 500 服务器创建过程出错
+ *     {
+ *       "error": err
+ *     }
  */
 articleRouter.post('/articles', (req, res) => {
   // 定义检验需要的schema
@@ -56,7 +126,7 @@ articleRouter.post('/articles', (req, res) => {
       title: {
         type: 'string'
       },
-      data: {
+      date: {
         type: 'number'
       },
       author: {
@@ -66,7 +136,7 @@ articleRouter.post('/articles', (req, res) => {
         type: 'string'
       }
     },
-    required: ['title', 'data', 'author', 'content']
+    required: ['title', 'date', 'author', 'content']
   };
   // 获取意欲新增文章内容，并进行检验
   let newArticle = req.body;

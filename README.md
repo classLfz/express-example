@@ -1,4 +1,4 @@
-# express-example
+# express-example[![Build Status](https://travis-ci.org/classLfz/express-example.svg?branch=master)](https://travis-ci.org/classLfz/express-example)
 
 一个简单的express服务，使用mongodb作为数据库。使用原生js编写。
 

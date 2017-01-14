@@ -14,7 +14,7 @@ articleRouter.use(bodyParser.json());
  * @apiName 获取文章列表
  * @apiGroup Articles
  *
- * @apiSuccess {Array} articleList 返回试卷信息数组
+ * @apiSuccess {Array} articleList 返回文章信息数组
  *
  * @apiSuccessExample Success-Response:
  *     HTTP/1.1 200 OK
@@ -92,14 +92,12 @@ articleRouter.get('/articles/:id', (req, res) => {
 /**
  * @api {post} /articles 创建新的单个文章信息
  * @apiName 创建新的单个文章信息
- * @apiGroup ExaminationPaper
+ * @apiGroup Articles
  *
- * @apiParam (body) {String} title       试卷标题（如：2017年国家教师资格证考试）
- * @apiParam (body) {Number} duration    考试时长，单位为分钟
- * @apiParam (body) {Number} start_time  考试开始时间（距1970 年 1 月 1 日的毫秒数）
- * @apiParam (body) {Number} end_time    考试结束时间（距1970 年 1 月 1 日的毫秒数）
- * @apiParam (body) {String} type        试卷类型（固定试卷/随机试卷）
- * @apiParam (body) {Number} last_modified_time       最后一次修改时间（距1970 年 1 月 1 日的毫秒数）
+ * @apiParam (body) {String} title       文章标题
+ * @apiParam (body) {Number} date        创作日期
+ * @apiParam (body) {String} author      作者
+ * @apiParam (body) {String} content     文章内容
  *
  * @apiSuccess (Success 2xx) 201 创建成功
  *
@@ -156,10 +154,13 @@ articleRouter.post('/articles', (req, res) => {
 });
 
 /**
- * 根据ID删除单篇文章
+ * @api {delete} /articles 根据id删除单篇文章信息
+ * @apiName 根据id删除单个文章信息
+ * @apiGroup Articles
  *
- * 删除成功，返回状态码204;
- * 删除失败，返回状态码400;
+ * @apiParam (params) {String} id       文章id
+ *
+ * @apiSuccess (Success 2xx) 204 删除成功
  */
 articleRouter.delete('/articles/:id', (req, res) => {
   // 获取id
@@ -169,7 +170,8 @@ articleRouter.delete('/articles/:id', (req, res) => {
     .then(() => {
       res.sendStatus(204);
     }, err => {
-      res.status(400).json(err);
+      console.error(err);
+      res.sendStatus(204);
     });
 });
 

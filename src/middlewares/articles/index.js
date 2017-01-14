@@ -140,16 +140,50 @@ articleRouter.post('/articles', (req, res) => {
   let newArticle = req.body;
   let [validated, errors] = helper.ajvCompileAndValid(schema, newArticle);
   if (!validated) {
-    res.status(400).json(errors);
+    res.sendStatus(400).json(errors);
     return;
   }
 
   // 新增文章数据结构没问题，则进行数据库添加
   Articles.create(newArticle)
     .then(() => {
-      res.send(201);
+      res.sendStatus(201);
     }, err => {
       res.status(500).json(err);
+    });
+});
+
+/**
+ * @api {put} /articles/:id 更新单篇文章信息
+ * @apiName 更新单篇文章信息
+ * @apiGroup Articles
+ *
+ * @apiParam (params) {String} id        文章id
+ *
+ * @apiParam (body) {String} title       文章标题
+ * @apiParam (body) {String} author      作者
+ * @apiParam (body) {Number} date        创作时间（距1970 年 1 月 1 日的毫秒数）
+ * @apiParam (body) {String} content     文章内容
+ *
+ * @apiSuccess (Success 2xx) 204 成功更新信息
+ *
+ * @apiError (Error 4xx) 400 请求上传格式不符合要求
+ *
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 400 请求上传格式不符合要求
+ *     {
+ *       "error": err
+ *     }
+ */
+articleRouter.put('/articles/:id', (req, res) => {
+  let id = req.params.id;
+  let newArticle = req.body;
+
+  Articles.findByIdAndUpdate(id, newArticle).exec()
+    .then(() => {
+      res.sendStatus(204);
+    }, err => {
+      res.status(400).json(err);
     });
 });
 

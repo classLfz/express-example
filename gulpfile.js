@@ -18,7 +18,7 @@ gulp.task('apidoc', (done) => {
 gulp.task('lint', () => {
   return gulp.src([
     '!node_modules/**',
-    '!docs/**',
+    '!apidoc/**',
     './**/*.js'
   ])
   .pipe(eslint(eslintrc))

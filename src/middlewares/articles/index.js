@@ -55,7 +55,7 @@ articleRouter.get('/articles', (req, res) => {
  * @apiName 根据id获取文章信息
  * @apiGroup Articles
  *
- * @apiParam (params) {String} id       试卷id
+ * @apiParam (params) {String} id       文章id
  *
  * @apiSuccess {Array} article 返回相应id的文章信息
  *

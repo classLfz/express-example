@@ -2,6 +2,8 @@
 
 一个简单的express服务，使用mongodb作为数据库。使用原生js编写。
 
+[点击查看文档](https://classlfz.github.io/express-example/)
+
 修改配置文件`src/server.json`进行对数据库地址、端口、数据库名称的修改。默认为：
 ```json
 {
@@ -44,6 +46,10 @@
 文档的编写使用[apidoc](http://apidocjs.com/)
 
 `gulp apidoc`或者`npm run apidoc`
+
+### 构建api文档，并上传到github pages
+
+`./gh.sh`
 
 ### 开启服务
 

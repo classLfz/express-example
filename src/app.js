@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const articleRouter = require('./middlewares/articles');
 const mongoose = require('mongoose');
 const serverConfig = require('./server.json');
@@ -11,6 +12,9 @@ mongoose.connect(`mongodb://${serverConfig.dbHost}:${serverConfig.dbPort}/${serv
     process.exit(1);
   }
 });
+
+// 跨域
+app.use(cors());
 
 // middlewares 中间件的使用
 app.use(articleRouter);

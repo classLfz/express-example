@@ -1,6 +1,6 @@
 workflow "Build on push" {
   on = "push"
-  resolves = ["lint"]
+  resolves = ["INSTALL", "LINT", "TEST"]
 }
 
 action "INSTALL" {

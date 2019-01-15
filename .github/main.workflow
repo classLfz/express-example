@@ -3,7 +3,17 @@ workflow "Build on push" {
   resolves = ["lint"]
 }
 
-action "lint" {
+action "INSTALL" {
   uses = "docker://node:10:14"
-  runs = "npm install && npm run lint && npm run test"
+  runs = "npm install"
+}
+
+action "LINT" {
+  needs = "INSTALL"
+  runs = "npm run lint"
+}
+
+action "TEST" {
+  needs = "LINT"
+  runs = "npm run test"
 }

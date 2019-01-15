@@ -8,7 +8,7 @@ action "INSTALL" {
   runs = "npm install"
 }
 
-action "INSTALL-GLOGAL" {
+action "INSTALL-GLOBAL" {
   needs = "INSTALL"
   uses = "docker://node:10.14"
   runs = "npm install --global gulp"

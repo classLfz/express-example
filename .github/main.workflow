@@ -1,6 +1,6 @@
 workflow "Build on push" {
   on = "push"
-  resolves = ["INSTALL", "LINT", "TEST"]
+  resolves = ["INSTALL", "INSTALL-GLOBAL", "LINT", "TEST"]
 }
 
 action "INSTALL" {
@@ -8,8 +8,14 @@ action "INSTALL" {
   runs = "npm install"
 }
 
-action "LINT" {
+action "INSTALL-GLOGAL" {
   needs = "INSTALL"
+  uses = "docker://node:10.14"
+  runs = "npm install --global gulp"
+}
+
+action "LINT" {
+  needs = "INSTALL-GLOBAL"
   uses = "docker://node:10.14"
   runs = "npm run lint"
 }

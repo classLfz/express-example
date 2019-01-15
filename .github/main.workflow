@@ -1,27 +1,9 @@
 workflow "Build on push" {
   on = "push"
-  resolves = ["TEST"]
+  resolves = ["GitHub Action for npm"]
 }
 
-action "INSTALL" {
-  uses = "docker://node:10:14"
+action "GitHub Action for npm" {
+  uses = "actions/npm@e7aaefed7c9f2e83d493ff810f17fa5ccd7ed437"
   runs = "npm install"
-}
-
-action "INSTALL-GLOBAL" {
-  needs = "INSTALL"
-  uses = "docker://node:10.14"
-  runs = "npm install --global gulp"
-}
-
-action "LINT" {
-  needs = "INSTALL-GLOBAL"
-  uses = "docker://node:10.14"
-  runs = "npm run lint"
-}
-
-action "TEST" {
-  needs = "LINT"
-  uses = "docker://node:10.14"
-  runs = "npm run test"
 }

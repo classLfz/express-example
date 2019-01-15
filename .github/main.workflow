@@ -1,6 +1,6 @@
 workflow "Build on push" {
   on = "push"
-  resolves = ["lint"]
+  resolves = ["lint", "unit test"]
 }
 
 action "install dev" {
@@ -18,4 +18,10 @@ action "lint" {
   uses = "actions/npm@e7aaefed7c9f2e83d493ff810f17fa5ccd7ed437"
   needs = ["global install"]
   runs = "npm run lint"
+}
+
+action "unit test" {
+  uses = "actions/npm@e7aaefed7c9f2e83d493ff810f17fa5ccd7ed437"
+  needs = ["global install"]
+  runs = "npm run test"
 }
